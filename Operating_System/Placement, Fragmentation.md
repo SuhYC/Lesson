@@ -35,7 +35,7 @@ fragmentation이 인접하면 합친다.
 적재된 데이터를 이동시키며 fragmentation을 한 공간으로 모은다. <br/>
 -> 오버헤드가 크다.. 효율적인 알고리즘도 없다..
 ### 3. 페이징
-나중에 별도의 문서를 추가하도록 하자.<br/>
+[설명](https://github.com/SuhYC/Lesson/blob/main/Operating_System/Paging.md)<br/>
 -> 외부 단편화를 해결할 수 있다.
 ### 4. 세그멘테이션
 나중에 별도의 문서를 추가하도록 하자.<br/>
