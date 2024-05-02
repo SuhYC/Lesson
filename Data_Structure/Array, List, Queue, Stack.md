@@ -21,7 +21,8 @@ Circular Linked List는 마지막 원소가 Head원소를 가리키게 하는 �
 Array든 ArrayList든 LinkedList든 다 Queue를 구현하는데 사용할 수 있다.<br/>
 Array로 구현하면 고정길이인게 단점이고 pop을 호출할때마다 데이터의 이동이 필요하거나 또는 특별한 로직이 필요하다(head를 가리키는 포인터라거나..)<br/>
 ArrayList로 구현하면 Array로 구현한 것보다 가변길이라는 장점이 생긴다.<br/>
-LinkedList로 구현하면 특별한 로직 없이 Head만 바꿔가며 구현할 수 있다. 다만 Circular Linked List나 Doubly Linked List가 적합하다. 뒤에서 삽입하고 앞에서 데이터를 꺼내기 때문..
+LinkedList로 구현하면 특별한 로직 없이 Head만 바꿔가며 구현할 수 있다. ~다만 Circular Linked List나 Doubly Linked List가 적합하다. 뒤에서 삽입하고 앞에서 데이터를 꺼내기 때문..~ <br/>
+생각해보니 Singly Linked List로 구현해도 Tail만 제대로 기억하고 있으면 push는 Tail에 구현하는 방식으로 쉽게 구현이 된다. 오히려 Head나 Tail중 하나만 기억하고 있다가 push나 pop 중 하나에서 시간을 크게 손해보는 것보다 이게 나은듯하다.
 
 ## Stack
 스택. LIFO의 구조를 갖는 자료구조이다.<br/>
