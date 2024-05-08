@@ -12,11 +12,11 @@ C++의 가장 중요한 포인트는 무엇일까? <br/>
 레퍼런스 카운터를 사용하여 아무도 해당 객체를 가리키고 있지 않을 때 해제해주는 포인터이다.
 
 ### Weak Pointer
-Shared Pointer의 Cycle Problem을 해결하기 위해 있는 포인터. 해당 포인터가 가리키고 있는 주소가 유효한 지 확인할 수 있다.<br/>
+Shared Pointer의 Circular Reference를 해결하기 위해 있는 포인터. 해당 포인터가 가리키고 있는 주소가 유효한 지 확인할 수 있다.<br/>
 Shared Pointer로부터 받은 주소를 가리킬 수 있지만, Shared Pointer의 RefCount는 증가시키지 않는다.<br/>
 하지만 RefCount를 증가시키지 않기 때문에 Weak Pointer가 가리키고 있는 주소가 해제되었는지는 확실하지 않다. <br/>
 다행히도 Weak Pointer는 해당 주소가 해제되었는지를 확인 가능하다. <br/>
-직접 메모리관리에 관여하지는 않지만 Cycle Problem에 대처가능하다.
+직접 메모리관리에 관여하지는 않지만 Circular Reference에 대처가능하다.
 
 ### Unique Pointer
 복사가 불가능하다. 한번에 하나의 포인터만 주소를 가리킬 수 있도록 하는 것이다. <br/>
