@@ -25,3 +25,10 @@ Shared Pointer로부터 받은 주소를 가리킬 수 있지만, Shared Pointer
 ### Auto Pointer
 사용이 권장되지 않으며 대부분 사용불가하다. <br/>
 Unique Pointer를 사용하도록 하자.
+
+### deleter
+가지고 있는 원시포인터가 배열포인터인지 단일포인터인지 스마트포인터 스스로는 알 수 없다. <br/>
+new로 할당된 포인터는 delete로 해제되어야하고 new[]로 할당된 포인터는 delete[]로 해제되어야한다. <br/>
+이를 해결하기 위해 deleter의 개념이 사용된다. <br/>
+해당 포인터가 new[]로 선언되었다면, delete[]를 호출하는 함수를 만들어 deleter인자로 함수포인터를 넘겨주면 되는 것이다. <br/>
+복잡한 구조의 포인터가 있다면 이 또한 deleter 내에서 다 처리할 수 있도록 하자. (ex. WSABUF, WSABUF.buf 둘다 해제되어야되는 경우)
