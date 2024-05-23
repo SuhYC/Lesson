@@ -24,7 +24,7 @@ b = 1에 해당하는 연산이 a = b + 1에 해당하는 연산 사이에 수�
 물론 결과는 우리가 생각하는 결과와 같다. a, b에 모두 1이 들어가게 된다. <br/>
 컴파일러는 결과가 바뀌지 않는 선에서 [CPU Pipelining](https://github.com/SuhYC/Lesson/blob/main/Computer_Structure/CPU_Cycle.md)을 고려해 더 나은 순서로 실행할 수 있도록 어셈블리화한다.
 
-이러한 과정은 멀티스레드환경 + Cache환경에서 예되지 않은 결과를 낳을 수 있는데 이를 해결해주는 것이 Memory_Order이다.
+이러한 과정은 멀티스레드환경 + Cache환경에서 예상되지 않은 결과를 낳을 수 있는데 이를 해결해주는 것이 Memory_Order이다.
 
 ### Memory_Order
 atomic<T> 함수에 사용할 수 있는 인자이다.
