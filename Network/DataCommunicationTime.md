@@ -10,6 +10,8 @@ $d : LengthOfPhysicalLink$
 $s : PropagationSpeed (\approx 2 * 10^8 m / sec)$   
 $Propagation Delay : d / s $
 
+전기신호의 이동시간은 광속이며, 구리선에서의 이동속도는 일반적으로 $0.59c \leq v \leq 0.77c$
+
 ### Transmission Time
 이동시간. 계층간 이동하는 데에 걸리는 시간이다.
 
