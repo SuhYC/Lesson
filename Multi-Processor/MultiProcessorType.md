@@ -1,9 +1,9 @@
 # Single Instruction Single Data
 한 번에 한 개씩의 명령어와 데이터를 순서대로 처리하는 단일 프로세서 시스템
 파이프라이닝, 슈퍼스칼라
-## 파이프라이닝
+### 파이프라이닝
 흔히 멀티스레딩. [시간적 병렬성](https://github.com/SuhYC/Lesson/blob/main/Computer_Structure/CPU_Cycle.md)(temporal parallelism)을 이용한 중첩계산(overlapped computation)을 수행.   
-## 슈퍼스칼라
+### 슈퍼스칼라
 파이프라인을 처리할 수 있는 코어를 여러 개 구성하여 복수의 명령어가 동시에 실행되도록 하는 방식.   
 파이프라이닝과 비슷하지만 각 단계에서 동시에 실행되는 명령어가 2개.   
 오늘날의 CPU는 대부분 슈퍼스칼라를 사용.
@@ -16,7 +16,7 @@
 
 # Multiple Instruction Single Data
 각 프로세서들은 서로 다른 명령어들을 실행하지만 처리하는 데이터들은 하나의 스트림.   
-실제로 설계된 예는 없음.
+자주 쓰이지 않음.
 
 # Multiple Instruction Multiple Data
 대부분의 병렬 컴퓨터들이 해당.   
