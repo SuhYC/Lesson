@@ -47,3 +47,8 @@ $\phi(n) = (p - 1)(q - 1)$를 대입하면, $C^d = m \times m^{k \times (p - 1)(
 결론 : $m \times m^{k \times (p - 1)(q - 1)} - m$는 ```n```에 대해서도 나누어 떨어진다.<br/>
 -> $m \times m^{k \times (p - 1)(q - 1)} - m$ $\equiv$ $0$ $mod$ $n$.<br/>
 -> $m \times m^{k \times (p - 1)(q - 1)} = m \times m^{k \times \phi(n)} = C^d$ $\equiv$ $m$ $mod$ $n$
+
+
+## RSA와 함께 사용하면 좋은 알고리즘
+$m^e$를 사용해서 암호화, $C^d$를 사용해서 복호화를 진행한다. 이는 일반적인 거듭제곱을 사용하면 상당히 오랜 시간이 걸린다.<br/>
+이 때, [모듈러 지수법](https://github.com/SuhYC/Lesson/blob/main/Algorithm/%EB%AA%A8%EB%93%88%EB%9F%AC%EC%A7%80%EC%88%98%EB%B2%95.md)을 사용하여 거듭제곱을 보다 빠르게 계산할 수 있다.
