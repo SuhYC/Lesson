@@ -23,7 +23,7 @@ char 또한 정수형 데이터이다. (다만 해당 정수가 %c 포맷에 의
 ## 주의사항
 
 컴파일러마다 char를 signed char로 쓸 지 unsigned char로 쓸 지는 다르다. <br/>
-또한, 일반적으로 1바이트형 데이터를 사용할 때, 4바이트형으로 integral promotion할 수도 있다. 이 경우 signed int 형태로 연산이 들어갈 수 있다.
+또한, 일반적으로 1바이트형 데이터를 사용할 때, 4바이트형으로 [integral promotion](https://github.com/SuhYC/Lesson/blob/main/C%2B%2B/Integral_Promotion.md)할 수도 있다. 이 경우 signed int 형태로 연산이 들어갈 수 있다.
 
     unsigned char a = 0xff;
     unsigned long long b = a << 24; // (signed int)0xff00 0000
