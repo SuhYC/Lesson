@@ -41,6 +41,41 @@ double형 변수 8바이트, 가상함수포인터 8바이트, int형 변수 4�
 하지만 유지보수의 측면에서 볼 때, 언제 어느 자식클래스의 소멸자가 변동될지 모르기도 하고, 일관성을 위해서도 통일하는 것이 좋을 것이다.<br/>
 그러므로 상속관계를 갖는 클래스의 소멸자는 virtual로 선언하는 것이 바람직하다.
 
+## 생성자에서 virtual함수 사용
+만약 부모클래스의 생성자 내부에서 virtual함수를 사용하는 경우는 어떻게 될까?<br/>
+```cpp
+class Base
+{
+public:
+  Base()
+  {
+    func();
+  }
+  virtual void func()
+  {
+    std::cout << "Base\n";
+  }
+}
+
+class Derived
+{
+public:
+  void func() override
+  {
+    std::cout << "Derived\n";
+  }
+}
+
+int main()
+{
+  Derived d;
+  return 0;
+}
+```
+위 코드를 실행하면 생성자가 호출되고, virtual로 선언된 함수 ```func()```이 실행되면서 ```Derived::func()```이 실행되어 Derived가 출력될 것 같지만,<br/>
+Base의 생성자가 호출될 때, Derived의 vtable을 참조해야할 것 같지만, 아쉽게도 Base의 vtable이 참조되면서 ```Base::func()```이 실행되어 Base가 출력된다.<br/>
+되도록이면 생성자에서 가상함수를 호출하지 않는 것이 가장 좋다.
+
 ### 그 외
 1. virtual 키워드로 선언된 함수는 자식클래스의 override된 함수도 virtual이 적용된다.<br/>
 오버라이드한 메소드에 virtual 키워드를 붙여도 되지만, 이러면 중복코드다.
