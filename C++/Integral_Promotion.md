@@ -1,5 +1,6 @@
 # Integral Promotion
 ## 정수 승격
+Integer Promotion이라고도 한다.<br/>
 일반적으로 프로세서가 작업하기 가장 좋은 크기의 정수형 데이터를 ```int```형으로 정의한다.<br/>
 그런 의미에서 작은 정수형 데이터는 ```int``` 또는 ```unsigned int```로 변환하여 계산하는 것이 효율적일 수 있다.<br/>
 
