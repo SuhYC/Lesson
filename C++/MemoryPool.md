@@ -14,3 +14,7 @@
 먼저, 락을 걸고 메모리풀에서 데이터를 가져오는건 그다지 비용적 이득이 없다. <br/>
 그러므로 원자적연산을 시도하여야하는데, 이 경우 [ABA Problem](https://github.com/SuhYC/Lesson/blob/main/Operating_System/ABA_problem.md)이 발생할 수 있다. <br/>
 ABA Problem을 해결할 수 있는 방법을 도입한 이후 사용하여야한다.
+
+
+### 예시
+[LockFreeStack](https://github.com/SuhYC/DIY/blob/main/LockFreeStack/FileName.cpp)
