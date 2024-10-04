@@ -17,4 +17,4 @@ ABA Problem을 해결할 수 있는 방법을 도입한 이후 사용하여야�
 
 
 ### 예시
-[LockFreeStack](https://github.com/SuhYC/DIY/blob/main/LockFreeStack/FileName.cpp)
+[LockFreeStack](https://github.com/SuhYC/DIY/tree/main/LockFreeStack)
