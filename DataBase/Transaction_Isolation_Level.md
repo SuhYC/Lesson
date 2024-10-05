@@ -30,7 +30,7 @@
 이 경우는 새로운 행이 추가되고, 해당 행이 ```SELECT...WHERE```의 조건에 맞았을 경우 발생한다. <br/>
 트랜잭션 A와 B가 있다고 가정하자. <br/>
 1. B : ```SELECT...WHERE``` // 1|a, 2|b
-2. A : ```INSERT INTO ... VALUES (3|c)
+2. A : ```INSERT INTO ... VALUES (3|c)```
 3. B : ```SELECT...WHERE``` // 1|a, 2|b, 3|c // 아까의 연산과 다른 값!
 
 ## Serializable
