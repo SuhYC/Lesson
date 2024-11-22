@@ -45,6 +45,36 @@ bar = foo?.member; // foo가 null이 아니면 member에 접근한다.
 
 ```??```연산자는 왼쪽 피연산자가 null인지 확인하고, null이 아니라면 왼쪽 피연산자를, null이라면 오른쪽 피연산자를 반환한다.
 
+## is 연산자
+```is```연산자는 왼쪽 식이 오른쪽의 패턴과 일치하는지 여부를 반환한다.
+
+ex.
+```CSharp
+object obj = "Hello";
+
+if(obj is string str) // 지역변수 str 선언도 가능하다. 이 경우 true이면 str이 obj의 string으로 초기화된다.
+{
+  Console.WriteLine(str);
+}
+```
+is연산자를 통해 선언한 변수는 지역변수라는 것이다.<br/>
+외부에 있는 변수를 is연산자의 오른쪽 패턴 오른쪽에 적어넣었다고 해당 외부변수에 대입되는게 아니다.
+
+## as 연산자
+```as```연산자는 특정 객체를 지정된 타입으로 안전하게 변환되는데 사용되는 연산자이다. <br/>
+ex.
+```CSharp
+object obj = "Hello";
+
+string str = obj as string;
+
+if(str is not null)
+{
+  Console.WriteLine(str);
+}
+```
+주의할 점은 참조형식이나 nullable데이터에 대입할 때 사용해야한다는 점이다. (변환에 실패하면 null을 반환하기 때문)
+
 ## 연산자 우선순위
 1. 후위증감, null조건부 연산자
 2. 전위증감연산자
