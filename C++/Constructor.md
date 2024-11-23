@@ -53,3 +53,56 @@ int main()
 }
 ```
 
+## 생성자와 예외
+생성자에서 예외를 던질 수는 있다.<br/>
+단, 생성자 내에서 동적할당을 직접 한 경우는 예외를 던지기 전, 반드시 해당 메모리를 해제하고 예외를 던져야한다.<br/>
+
+```cpp
+class A
+{
+public:
+	A(int i) { std::cout << "Constructor Called!\n"; }
+	~A() { std::cout << "Destructor Called!\n"; }
+};
+
+class B
+{
+public:
+	B() : a(new A(1))
+	{
+		throw std::bad_alloc();
+	}
+
+	~B()
+	{
+		std::cout << "B Cleans a!\n";
+		if (a != nullptr)
+		{
+			delete a;
+		}
+	}
+
+private:
+	A* a;
+};
+
+int main()
+{
+	try
+	{
+		B b;
+	}
+	catch (std::bad_alloc&)
+	{
+
+	}
+
+	return 0;
+}
+```
+결과:```Constructor Called!```
+
+위 예제에서 B객체를 생성하며 A객체를 동적할당하여 멤버변수를 초기화하고, 예외를 던진다. <br/>
+그러면 B의 소멸자에서 delete를 호출하며 a를 해제할 것 같지만, B의 소멸자는 호출되지도 않는다. <br/>
+생각해보면 B의 생성에 실패했으니 소멸자를 호출할 일도 없는 것이다. <br/>
+그러니 반드시 B객체의 생성자에서 예외를 던지기 전 이미 a를 해제하는 동작이 들어갔어야한다.
