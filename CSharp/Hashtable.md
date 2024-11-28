@@ -13,3 +13,21 @@ Console.WriteLine(ht["book"]); // 요리사
 
 ## 원리
 [링크](https://github.com/SuhYC/Lesson/blob/main/Data_Structure/Hashtable.md)
+
+## 초기화
+```Hashtable```도 초기자를 통한 초기화가 가능하다. <br/>
+```cs
+Hashtable ht = new Hashtable()
+{
+  {"key1", 1}, // ,로 구분하는거 주의!
+  {"key2", 2},
+  {"key3", 3}
+}
+
+Hashtable ht2 = new Hashtable()
+{
+  ["key1"] = 1,
+  ["key2"] = 2,
+  ["key3"] = 3
+};
+```
