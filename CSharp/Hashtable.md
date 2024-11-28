@@ -17,14 +17,14 @@ Console.WriteLine(ht["book"]); // 요리사
 ## 초기화
 ```Hashtable```도 초기자를 통한 초기화가 가능하다. <br/>
 ```cs
-Hashtable ht = new Hashtable()
+Hashtable ht = new Hashtable() // 컬렉션 초기자
 {
   {"key1", 1}, // ,로 구분하는거 주의!
   {"key2", 2},
   {"key3", 3}
 }
 
-Hashtable ht2 = new Hashtable()
+Hashtable ht2 = new Hashtable() // 딕셔너리 초기자
 {
   ["key1"] = 1,
   ["key2"] = 2,
