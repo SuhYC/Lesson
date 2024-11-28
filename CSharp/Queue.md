@@ -5,13 +5,14 @@ FIFO의 형태로 동작하는 자료구조. <br/>
 ## 함수
 1. Enqueue() : 새로운 데이터를 가장 뒤에 추가한다.
 2. Dequeue() : 큐에 있는 요소 중 가장 앞에 있는 요소를 Pop하여 반환한다.
+- 요소가 없는데 요청하면 System.InvalidOperationException을 발생시킨다.
 
 ## 예제
 ```cs
 Queue que = new Queue(); // 제네릭 없이 써도 되긴 한다! 이 경우 object타입으로 매개변수를 인식한다.
 que.Enqueue(1); // que: [1]
 que.Enqueue(2); // que: [1][2]
-int a = que.Dequeue(); // int a = 1;, que: [2]
+int a = (int)que.Dequeue(); // int a = 1;, que: [2]
 ```
 
 ## 배열을 이용한 초기화
