@@ -6,7 +6,7 @@
 ## 실험방법
 1. MSSQL에 50개의 데이터를 삽입하고 조회할 수 있도록 한다.
  - MSSQL에 odbc로 연결할 서버는 C++로 작성한다.
-2. Redis를 사용해 캐싱기능을 사용할 함수를 따로 작성한다.
+2. Redis를 사용해 캐싱기능을 사용할 함수를 따로 작성한다. <br/>
 ```cpp
 std::string GetCharListCache(const int userCode_)
 {
@@ -16,8 +16,8 @@ std::string GetCharListCache(const int userCode_)
 		return ret;
 	}
 
-  ret = GetCharList(userCode_); // 전통적인 DB조회버전
-  m_RedisManager.CreateCharList(userCode_, ret); // 캐시 남기기
+	ret = GetCharList(userCode_); // 전통적인 DB조회버전
+	m_RedisManager.CreateCharList(userCode_, ret); // 캐시 남기기
   
 	return ret;
 }
