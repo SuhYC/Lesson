@@ -27,16 +27,17 @@ ASCII나 UTF-8문자 인코딩(혹은 다른 로컬문자 인코딩)을 사용�
 각 문자는 2바이트를 차지한다.
 
 ## ODBC C++ ```SQLCHAR```
-1바이트 문자를 표현하는 데이터타입. C스타일 문자열(char[])를 사용한다. <br/>
+1바이트 문자를 표현하는 데이터타입. C스타일 문자열(```char[]```)를 사용한다. <br/>
 ASCII 혹은 UTF-8 문자열등을 표현할 때 사용한다. <br/>
 1바이트 단위로 저장한다. <br/>
 ```VARCHAR```에 해당하는 데이터타입이다.
 
 ## ODBC C++ ```SQLWCHAR```
-2바이트 문자를 표현하는 데이터타입. wchar_t[]와 같은 방식으로 유니코드 문자열을 다룬다. <br/>
+2바이트 문자를 표현하는 데이터타입. ```wchar_t[]```와 같은 방식으로 유니코드 문자열을 다룬다. <br/>
 기본적으로 UTF-16인코딩을 지원한다. <br/>
 2바이트 단위로 저장한다. <br/>
 ```NVARCHAR```에 해당하는 데이터타입이다.<br/>
-SQLExecDirect함수가 기본적으로 SQLWCHAR[] 타입의 쿼리를 파라미터로 받기 때문에<br/>
-```std::string``` 문자열을 쿼리에 포함시키고 싶다면 UTF-16으로 인코딩한 ```std::wstring```으로 변환하여 swprintf함수에 c_str()으로 전달해주면 된다.<br/>
-인코딩 변환에는 MultiByteToWideChar함수와 WideCharToMultiByte함수를 이용할 것.
+```SQLExecDirect```함수가 기본적으로 ```SQLWCHAR[]``` 타입의 쿼리를 파라미터로 받기 때문에<br/>
+```std::string``` 문자열을 쿼리에 포함시키고 싶다면 UTF-16으로 인코딩한 ```std::wstring```으로 변환하여<br/>
+```swprintf```함수에 ```c_str()```으로 전달해주면 된다.<br/>
+인코딩 변환에는 ```MultiByteToWideChar```함수와 ```WideCharToMultiByte```함수를 이용할 것.
