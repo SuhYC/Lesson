@@ -21,4 +21,4 @@ bool bRet = false;
 bRet &= SomeBoolReturnMethod(); // false에 &=연산을 하더라도 그 값이 변하지 않는데도 불구하고 굳이굳이 SomeBoolReturnMethod()는 실행된다..
 ```
 
-모든 동작이 성공적으로 수행되어야하는 경우가 있다면 굳이 ```&=```를 쓰지 말고 ealry-return을 하자.
+모든 동작이 성공적으로 수행되어야하는 경우가 있다면 굳이 ```&=```를 쓰지 말고 early-return을 하자.
