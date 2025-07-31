@@ -111,3 +111,111 @@ A Con
 B Con
 A Des
 ```
+
+## 전역객체는 언제 소멸되는데?
+결론부터 말하면 전역객체는 생성된 순서의 역순으로 소멸한다. <br/>
+다음 코드로 4가지 케이스를 구분하여 소멸자에서 출력하는 예제를 만들어보았다. <br/>
+1. 전역에 선언된 객체
+2. 클래스 멤버로 선언된 static 객체
+3. 클래스 멤버함수 내에 선언된 static 객체 (Meyers Singleton)
+4. 메인함수 내에 선언된 객체
+
+```cpp
+#include <iostream>
+
+class Global
+{
+public:
+	~Global()
+	{
+		std::cout << "Global\n";
+		return;
+	}
+};
+
+class StaticLocal
+{
+public:
+	~StaticLocal()
+	{
+		std::cout << "Static Local\n";
+		return;
+	}
+};
+
+class StaticMember
+{
+public:
+	~StaticMember()
+	{
+		std::cout << "Static Member\n";
+		return;
+	}
+};
+
+class MainLocal
+{
+public:
+	~MainLocal()
+	{
+		std::cout << "Main Local\n";
+		return;
+	}
+};
+
+class Test
+{
+public:
+	static StaticMember sm1;
+	static StaticMember sm2;
+	void Prepare()
+	{
+		static StaticLocal sl;
+		return;
+	}
+};
+
+StaticMember Test::sm1{};
+
+Global g;
+
+//StaticMember Test::sm2{};
+
+int main()
+{
+	MainLocal ml;
+
+	Test t;
+	t.Prepare();
+
+	return 0;
+}
+```
+
+4가지 모두 프로그램의 종료를 기점으로 소멸하는 객체이다. <br/>
+하지만 일반적인 케이스에서 이 중에 1가지를 제외하고는 그 소멸 순서를 예측할 수 없다. <br/>
+
+일단 예제코드에서는 <br/>
+1. 메인로컬
+2. 스태틱로컬
+3. 글로벌
+4. 스태틱멤버
+의 순서로 소멸한다. <br/>
+
+그 이유는 메인로컬의 경우는 프로그램의 종료가 기점일 뿐 전역객체가 아니다. <br/>
+결국 스코프 내에 존재하므로 스택에 선언된 객체이며, 스택이 먼저 정리되어야하므로 메인로컬은 무조건 저 4가지 중 가장 빠르게 소멸한다. <br/>
+
+그리고 나머지 3가지 케이스는 초기화된 순서의 역순으로 소멸하는 셈이다. <br/>
+
+#### 어? 그러면 소멸 순서를 예측할 수 없다는 말은 틀린거 아닌가요?
+코드를 소스파일 하나만으로 작성하는 경우는 예측할 수 있다. <br/>
+하지만 우리는 수많은 소스파일과 헤더파일로 프로젝트를 구성하는게 효율적이라는 것을 알고 있다. <br/>
+프로젝트의 규모가 커지면 반드시 여러개의 파일로 프로젝트를 구성하게 된다. <br/>
+이 때 [컴파일 과정](https://github.com/SuhYC/Lesson/blob/main/C%2B%2B/Compile_Process.md)중 3단계에서 cpp파일이 오브젝트파일로 번역되고, 4단계에서 오브젝트 파일들을 병합하여 하나의 실행파일로 만들게 되는데, <br/>
+이 때 오브젝트파일의 순서는 보장되지 않는다. <br/>
+
+예제코드는 하나의 cpp파일에 모든 코드가 있기 때문에 순서를 예측할 수 있었지만 <br/>
+여러개의 번역단위를 갖는 프로젝트에서는 순서를 예측할 수 없다. <br/>
+
+싱글턴객체가 서로를 참조하면 문제가 생길 수 있는 이유이기도 하다. <br/>
+싱글턴객체 중에 어떤게 먼저 생성되고 어떤게 먼저 소멸할 지 모르기 때문에 싱글턴 객체가 서로를 참조하는 경우는 배제하는게 좋다.
