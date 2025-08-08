@@ -43,4 +43,4 @@ wsl 터미널에
 ```bash
 docker run -p 12345:12345 my-epoll-server
 ```
-```-p 12345:12345``` 부분이 포트포워딩! (-p <HostPort>:<ContainerPort>)
+```-p 12345:12345``` 부분이 포트포워딩! (```-p <HostPort>:<ContainerPort>```)
