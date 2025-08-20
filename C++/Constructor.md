@@ -106,3 +106,82 @@ int main()
 그러면 B의 소멸자에서 delete를 호출하며 a를 해제할 것 같지만, B의 소멸자는 호출되지도 않는다. <br/>
 생각해보면 B의 생성에 실패했으니 소멸자를 호출할 일도 없는 것이다. <br/>
 그러니 반드시 B객체의 생성자에서 예외를 던지기 전 이미 a를 해제하는 동작이 들어갔어야한다.
+
+
+## 멤버 이니셜라이저
+C++의 생성자에서는 멤버를 초기화하는 멤버이니셜라이저를 사용할 수 있는데, <br/>
+자원을 소유한 객체일 수록 멤버이니셜라이저를 사용할 것을 권장한다. <br/>
+그 이유는 다음 코드를 보면 알 수 있는데, <br/>
+
+```cpp
+class ResourceObject
+{
+public:
+    ResourceObject()
+    {
+        std::cout << "Constructor.\n";
+    }
+    ResourceObject(const ResourceObject& other_) noexcept
+    {
+        std::cout << "Copy Constructor.\n";
+    }
+
+    ResourceObject& operator=(ResourceObject&& rhs_) noexcept
+    {
+        std::cout << "operator= R-v.\n";
+
+        return *this;
+    }
+    ResourceObject& operator=(const ResourceObject& other_) noexcept
+    {
+        std::cout << "operator= L-v.\n";
+
+        return *this;
+    }
+};
+
+class A
+{
+public:
+    A(ResourceObject& obj) : data(obj)
+    {
+
+    }
+
+private:
+    ResourceObject data;
+};
+
+class B
+{
+public:
+    B(ResourceObject& obj)
+    {
+        data = obj;
+    }
+private:
+    ResourceObject data;
+};
+
+int main() {
+    ResourceObject obj;
+
+    std::cout << "A Test Start.\n";
+
+    A a(obj); // 멤버 이니셜라이저로 초기화!
+
+    std::cout << "B Test Start.\n";
+
+    B b(obj); // 본문 내 초기화
+
+    return 0;
+}
+```
+위 코드를 실행하면, <Br/>
+멤버 이니셜라이저로 초기화한 쪽은 바로 복사생성자가 호출되며 1번의 함수 호출로 완료된다. <br/>
+하지만 본문 내 초기화는 기본생성자가 호출되고, 대입연산자가 호출되며 2번의 함수 호출로 완료된다. <br/>
+
+C++의 객체 내 멤버 중 class타입 멤버는 멤버이니셜라이저가 명시되어 있지 않다면 기본생성자가 호출된다. <br/>
+할당과 동시에 초기화가 진행되고, 이후에 생성자가 호출되어 본문 초기화를 하기 때문에, <br/>
+자원을 관리하는 객체 멤버를 본문 내 초기화하게 되면, 기본생성자와 대입연산자가 호출되므로 비효율적이다. <br/>
+자원을 관리하는 객체 멤버는 되도록 멤버 이니셜라이저를 사용해 복사생성자만 호출하도록하여 오버헤드를 줄이자.
