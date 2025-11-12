@@ -5,7 +5,8 @@ C++에서 kafka와 연동하기 위한 라이브러리. <br/>
 ```rd_kafka_t*``` : 클라이언트 인스턴스 핸들. producer 혹은 consumer 용도로 생성. 둘 다 각각 생성도 가능. <br/>
 ```rd_kafka_conf_t*``` : 설정 객체. producer를 만들 때마다 하나씩 생성하여 설정하여야하며, 해제의무는 producer객체가 갖는다. <br/>
 ```rd_kafka_topic_conf_t*``` : 토픽별 설정 객체.  <br/>
-```rd_kafka_resp_err_t``` : 함수 오류 및 상태를 나타내는 enum.
+```rd_kafka_resp_err_t``` : 함수 오류 및 상태를 나타내는 enum. <br/>
+```rd_kafka_message_t*``` : fetch해온 메시지.
 
 ## 인스턴스 생성 / 파괴
 ```rd_kafka_conf_new()``` : 새로운 설정 객체의 포인터를 반환. 실패하면 NULL. <br/>
