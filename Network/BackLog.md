@@ -3,17 +3,17 @@ TCP의 ```listen()```은 ```accept()```를 수행하기 전에 도착한 요청�
 해당 ```connect()```요청을 담아두는 큐의 크기를 backlog라고 하며, <br/>
 첫번째 인자는 소켓 또는 fd, 두번째 인자가 backlog가 된다. <Br/>
 
-# /proc/sys/net/core/somaxconn
+## /proc/sys/net/core/somaxconn
 가상파일 시스템의 커널 파라미터로, linux상에서 위에서 언급한 Backlog의 실질적 제한을 변경할 수 있다. <br/>
 linux에서는 기본값으로 ```128~4096```(커널 버전에 따라 다르다). <br/>
 windows에서는 조절이 실질적으로 불가능하며, windows버전에 따라 ```200~2000```수준으로 제한되어있을 수 있다. <br/>
 
-# net.ipv4.tcp_max_syn_backlog
+## net.ipv4.tcp_max_syn_backlog
 위에서 언급한 ```somaxconn```의 경우는 연결할 준비를 마친 요청들의 대기 큐라면, <br/>
 ```tcp_max_syn_backlog```는 절반만 연결한 요청들의 대기 큐의 크기이다. <br/>
 ```3-way-handshake```의 클라이언트 요청이 서버에 도착하여 처리되고, 서버에서 다시 클라이언트의 ```SYN-ACK```를 기다리고 있는 요청들의 큐. <br/>
 
-## Backlog가 너무 작게 설정되어 있으면 어떤 일이 일어날까?
+### Backlog가 너무 작게 설정되어 있으면 어떤 일이 일어날까?
 ```accept```가 처리되기 전에는 당연히 큐가 비워지지 않으니, <Br/>
 ```accept```처리보다 빠르게 누적된 ```connect```요청은 드랍된다. <br/>
 순간적으로 많은 접속이 예상되는 시기에 연결실패로 재시도하는 일이 잦아지는 셈. <br/>
